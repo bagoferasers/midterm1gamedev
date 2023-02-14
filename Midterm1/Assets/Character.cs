@@ -11,6 +11,7 @@ public class Character : MonoBehaviour
     float playerHealth;
     float shieldHealth;
     float shieldStrength;
+    float playerScore;
     Rigidbody2D rb2d;
 
     [ Header( "enter user health data here" ) ]
@@ -22,6 +23,9 @@ public class Character : MonoBehaviour
     [ Header( "enter shield strength data here" ) ]
     public Text ss;
 
+    [ Header( "enter player score data here" ) ]
+    public Text ps;
+
     // Start is called before the first frame update
     void Start( )
     {
@@ -29,8 +33,9 @@ public class Character : MonoBehaviour
         playerHealth = 50f;
         shieldHealth = 10f;
         shieldStrength = 20f;
-        Debug.Log( playerHealth );
-        Debug.Log( shieldHealth );
+        
+        //figure out how to store previous scores
+        playerScore = 0f;
     }
 
     // Update is called once per frame
@@ -39,6 +44,7 @@ public class Character : MonoBehaviour
         h.text = "" + playerHealth;
         s.text = "" + shieldHealth;
         ss.text = "" + shieldStrength;
+        ps.text = "" + playerScore;
     }
     
     void FixedUpdate( )
@@ -53,6 +59,7 @@ public class Character : MonoBehaviour
             Destroy( collider.gameObject );
             Debug.Log( "Collided with healthRegen" );
             playerHealth += 10;
+            playerScore += 1;
             Debug.Log( playerHealth );
         }
     }
