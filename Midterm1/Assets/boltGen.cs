@@ -21,12 +21,6 @@ public class boltGen : MonoBehaviour
         generateMe( );
     }
 
-    // Update is called once per frame
-    void Update( )
-    {
-
-    }
-
     void generateMe( )
     {
         StartCoroutine( gen( ) );

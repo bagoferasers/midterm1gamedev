@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9024395070320269772}
   - component: {fileID: 182694277622569023}
   - component: {fileID: 6135035940350087807}
-  - component: {fileID: 8693826770963606181}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -4813,18 +4812,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &8693826770963606181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741392100141345912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5546f1dbf830e5b4487288381aa27d5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2286322366828324291
 GameObject:
   m_ObjectHideFlags: 0
@@ -4950,6 +4937,7 @@ GameObject:
   - component: {fileID: 3692143678523795438}
   - component: {fileID: 5458842600343473973}
   - component: {fileID: 3681773812845146861}
+  - component: {fileID: 930933569643629237}
   m_Layer: 0
   m_Name: witchHooded
   m_TagString: witchHoodedCollision
@@ -5100,6 +5088,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.2}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
+--- !u!114 &930933569643629237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460852438782833732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04af39cf8723a743b88e89d2c6aabed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2825362067532633434
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class bolttranslate : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update( )
     {
         transform.Translate( new Vector3( 0, -1, 0 ) * Time.deltaTime * 5, Space.World );
     }

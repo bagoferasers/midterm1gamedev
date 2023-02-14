@@ -4828,6 +4828,7 @@ GameObject:
   - component: {fileID: 3499660713000307891}
   - component: {fileID: 2101650592992050648}
   - component: {fileID: 3960264525855758339}
+  - component: {fileID: 2923269819103925179}
   m_Layer: 0
   m_Name: sparkyBolt
   m_TagString: boltCollision
@@ -5010,7 +5011,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -5085,6 +5086,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2923269819103925179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655720708893898438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04af39cf8723a743b88e89d2c6aabed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g: {fileID: 4655720708893898438}
 --- !u!1 &8282308190128360271
 GameObject:
   m_ObjectHideFlags: 0
