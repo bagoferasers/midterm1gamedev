@@ -89,6 +89,23 @@ public class Character : MonoBehaviour
             if( shieldHealth > 0 )
                 shieldHealth -= 10;
         }
+
+        if( collider.tag == "witchHoodedCollision" )
+        {
+            Debug.Log( "Collided with hooded witch" );
+            if( playerHealth > 0 )
+                playerHealth -= 10;
+            playerScore -= 10;
+            if( shieldHealth > 0 )
+                shieldHealth -= 10;
+        }
+
+        if( collider.tag == "ENDGAMEOBJECT" )
+        {
+            Debug.Log( "Collided with hooded bolt." );
+            StartCoroutine( dieScene( ) );
+            Debug.Log( "Changed scene to Death." );
+        }
     }
 
     public IEnumerator dieScene( )

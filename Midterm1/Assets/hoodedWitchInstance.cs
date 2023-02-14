@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class witchInstance : MonoBehaviour
+public class hoodedWitchInstance : MonoBehaviour
 {
     [ Header( "enter object to generate" ) ]
     public GameObject g;
@@ -14,7 +14,7 @@ public class witchInstance : MonoBehaviour
     void Start( )
     {
         UICanvas = GameObject.Find( "UICanvas" );
-        random = new Vector3( Random.Range( -10, 10 ), UICanvas.transform.position.y + 20, 0 );
+        random = new Vector3( Random.Range( -10, 10 ), UICanvas.transform.position.y + 10, transform.position.z );
         GameObject i = Instantiate( g, random, Quaternion.identity );
         i.transform.parent = gameObject.transform;
         generateMe( );
@@ -24,7 +24,7 @@ public class witchInstance : MonoBehaviour
     // Update is called once per frame
     void Update( )
     {
-        random = new Vector3( Random.Range( -10, 10 ), UICanvas.transform.position.y + 20, 0 );
+        random = new Vector3( Random.Range( -10, 10 ), UICanvas.transform.position.y + 10, transform.position.z );
     }
 
     void generateMe( )
