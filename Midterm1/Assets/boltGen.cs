@@ -12,7 +12,7 @@ public class boltGen : MonoBehaviour
     {
         GameObject i = Instantiate( g, new Vector3( 0, 0, 0 ), Quaternion.identity );
         i.transform.parent = gameObject.transform;
-        generateMe( );
+        //generateMe( );
         
     }
 
@@ -29,7 +29,7 @@ public class boltGen : MonoBehaviour
     
     public IEnumerator gen( )
     {
-        yield return new WaitForSeconds( 1 );
+        yield return new WaitForSeconds( 3 );
         GameObject i = Instantiate( g, new Vector3( 0, 0, 0 ), Quaternion.identity );      
         i.transform.parent = gameObject.transform;
         generateMe( );
