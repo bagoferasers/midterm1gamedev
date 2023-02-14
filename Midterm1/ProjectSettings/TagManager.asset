@@ -9,6 +9,7 @@ TagManager:
   - boltCollision
   - witchHoodedCollision
   - ENDGAMEOBJECT
+  - YOUWON
   layers:
   - Default
   - TransparentFX
