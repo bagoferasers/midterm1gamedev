@@ -14,7 +14,7 @@ public class hoodedWitchInstance : MonoBehaviour
     void Start( )
     {
         UICanvas = GameObject.Find( "UICanvas" );
-        random = new Vector3( Random.Range( -10, 10 ), UICanvas.transform.position.y + 10, transform.position.z );
+        random = new Vector3( Random.Range( -10, 10 ), UICanvas.transform.position.y + 30, transform.position.z );
         GameObject i = Instantiate( g, random, Quaternion.identity );
         i.transform.parent = gameObject.transform;
         generateMe( );
@@ -24,7 +24,7 @@ public class hoodedWitchInstance : MonoBehaviour
     // Update is called once per frame
     void Update( )
     {
-        random = new Vector3( Random.Range( -10, 10 ), UICanvas.transform.position.y + 10, transform.position.z );
+        random = new Vector3( Random.Range( -10, 10 ), UICanvas.transform.position.y + 30, transform.position.z );
     }
 
     void generateMe( )
@@ -34,7 +34,7 @@ public class hoodedWitchInstance : MonoBehaviour
     
     public IEnumerator gen( )
     {
-        yield return new WaitForSeconds( 8 );
+        yield return new WaitForSeconds( 10 );
         GameObject i = Instantiate( g, random, Quaternion.identity );        
         i.transform.parent = gameObject.transform;
         generateMe( );
