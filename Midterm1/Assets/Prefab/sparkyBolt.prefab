@@ -4829,7 +4829,7 @@ GameObject:
   - component: {fileID: 2101650592992050648}
   m_Layer: 0
   m_Name: sparkyBolt
-  m_TagString: Untagged
+  m_TagString: boltCollision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4972,8 +4972,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.036987297, y: -0.01064365}
-  m_Size: {x: 0.5496825, y: 0.10960055}
+  m_Offset: {x: 0.0369873, y: -0.009192714}
+  m_Size: {x: 0.5496825, y: 0.18795009}
   m_Direction: 1
 --- !u!114 &2101650592992050648
 MonoBehaviour:

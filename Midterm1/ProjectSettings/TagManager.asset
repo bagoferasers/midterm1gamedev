@@ -6,6 +6,7 @@ TagManager:
   tags:
   - healthRegen
   - witchCollision
+  - boltCollision
   layers:
   - Default
   - TransparentFX

@@ -45,6 +45,12 @@ public class Character : MonoBehaviour
         s.text = "" + shieldHealth;
         ss.text = "" + shieldStrength;
         ps.text = "" + playerScore;
+
+        if( playerHealth <= 0 )
+        {
+            StartCoroutine( dieScene( ) );
+            Debug.Log( "Changed scene to Death." );
+        }
     }
     
     void FixedUpdate( )
@@ -54,19 +60,38 @@ public class Character : MonoBehaviour
 
     private void OnTriggerEnter2D( Collider2D collider )
     {
-        if( collider.tag == "healthRegen" && playerHealth < 100 )
+        if( collider.tag == "healthRegen" )
         {
             Destroy( collider.gameObject );
             Debug.Log( "Collided with healthRegen" );
-            playerHealth += 10;
-            playerScore += 1;
+            if( playerHealth < 100 )
+                playerHealth += 10;
+            playerScore += 10;
         }
 
-        if( collider.tag == "witchCollision" && playerHealth > 0 )
+        if( collider.tag == "witchCollision" )
         {
             Debug.Log( "Collided with witch" );
-            playerHealth -= 10;
-            playerScore -= 10;
+            if( playerHealth > 0 )
+                playerHealth -= 2;
+            playerScore -= 2;
+            if( shieldHealth > 0 )
+                shieldHealth -= 5;
         }
+
+        if( collider.tag == "boltCollision" )
+        {
+            Debug.Log( "Collided with bolt" );
+            if( playerHealth > 0 )
+                playerHealth -= 10;
+            playerScore -= 10;
+            if( shieldHealth > 0 )
+                shieldHealth -= 10;
+        }
+    }
+
+    public IEnumerator dieScene( )
+    {
+
     }
 }
