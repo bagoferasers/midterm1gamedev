@@ -60,7 +60,13 @@ public class Character : MonoBehaviour
             Debug.Log( "Collided with healthRegen" );
             playerHealth += 10;
             playerScore += 1;
-            Debug.Log( playerHealth );
+        }
+
+        if( collider.tag == "witchCollision" && playerHealth > 0 )
+        {
+            Debug.Log( "Collided with witch" );
+            playerHealth -= 10;
+            playerScore -= 10;
         }
     }
 }
