@@ -19,7 +19,6 @@ public class boltGen : MonoBehaviour
         i.transform.rotation = Quaternion.Euler( new Vector3( 0f, 0f, 270f ) );
         i.transform.localScale = new Vector3( 2, 2, 1 );
         generateMe( );
-        
     }
 
     // Update is called once per frame
@@ -42,6 +41,5 @@ public class boltGen : MonoBehaviour
         i.transform.rotation = Quaternion.Euler( new Vector3( 0f, 0f, 270f ) );
         i.transform.localScale = new Vector3( 2, 2, 1 );
         generateMe( );
-    }   
-
+    }
 }
