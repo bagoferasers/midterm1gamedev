@@ -12,7 +12,7 @@ public class Character : MonoBehaviour
     float playerHealth;
     float shieldHealth;
     float shieldStrength;
-    float playerScore;
+    public static float playerScore;
     Rigidbody2D rb2d;
 
     [ Header( "enter user health data here" ) ]
