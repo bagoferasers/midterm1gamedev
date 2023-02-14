@@ -20,6 +20,8 @@ public class heartInstance : MonoBehaviour
         UICanvas = GameObject.Find( "UICanvas" );
         p = int.Parse( playerHealth.text );
         random = new Vector3( Random.Range( -10, 10 ), UICanvas.transform.position.y + 10, 0 );
+        GameObject heart = Instantiate( g, random, Quaternion.identity );
+        heart.transform.parent = gameObject.transform;
         generateMe( );
         
     }
@@ -38,14 +40,13 @@ public class heartInstance : MonoBehaviour
     
     public IEnumerator gen( )
     {
+        yield return new WaitForSeconds( 8 );
         if( p > 0 )
         {
             GameObject heart = Instantiate( g, random, Quaternion.identity );        
             heart.transform.parent = gameObject.transform;
-            StartCoroutine( gen( ) );
-            yield return null;
+            generateMe( );
         }
-        yield return new WaitForSeconds( 3 );
     }   
 
 }
