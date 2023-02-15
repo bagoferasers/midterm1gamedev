@@ -116,12 +116,18 @@ public class Character : MonoBehaviour
         if( collider.tag == "YOUWON" )
         {
             Debug.Log( "You completed the game." );
-            StartCoroutine( dieScene( ) );
+            StartCoroutine( winScene( ) );
             Debug.Log( "Changed scene to Win." );
         }
     }
 
     public IEnumerator dieScene( )
+    {
+        SceneManager.LoadScene( "Death" );
+        yield return null;
+    }
+
+    public IEnumerator winScene( )
     {
         SceneManager.LoadScene( "Win" );
         yield return null;
