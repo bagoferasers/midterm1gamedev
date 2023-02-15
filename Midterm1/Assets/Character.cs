@@ -33,7 +33,7 @@ public class Character : MonoBehaviour
     {
         rb2d = GetComponent< Rigidbody2D >( );
         playerHealth = 100f;
-        shieldHealth = 6f;
+        shieldHealth = 16f;
         shieldStrength = 50f;
         
         //figure out how to store previous scores
@@ -130,14 +130,12 @@ public class Character : MonoBehaviour
             Destroy( collider.gameObject );
         }
 
-///////////////////////////////////////////////currently here/////////////////////////////////////////////
         // handle collision with witch spinning
         if( collider.tag == "witchCollision" )
         {
             Debug.Log( "Collided with witch" );
             GameObject spinWitchGenerator = GameObject.Find( "spinWitchGenerator" );
             spinWitchGenerator.GetComponent< AudioSource >( ).Play( );
-
             if( shieldHealth > 0 && ( ( shieldHealth - 5 ) > 0 ) )
             {
                 shieldHealth -= 5;
@@ -173,21 +171,47 @@ public class Character : MonoBehaviour
                 playerScore -= 5;
         }
 
-///////////////////////////////////////////////currently here/////////////////////////////////////////////
         if( collider.tag == "boltCollision" )
         {
             Debug.Log( "Collided with bolt" );
             GameObject spinWitchGenerator = GameObject.Find( "spinWitchGenerator" );
             spinWitchGenerator.GetComponent< AudioSource >( ).Play( );
             if( shieldHealth > 0 && ( ( shieldHealth - 10 ) > 0 ) )
+            {
                 shieldHealth -= 10;
-            else if( shieldHealth > 0 )
-                shieldHealth = 0;
-            else if( playerHealth > 0 )
+                playerScore -= 10;
+            }
+            else if( shieldHealth > 0 && ( ( shieldHealth - 10 ) <= 0 ) )
+            {
+                float remainder = shieldHealth - 10;
+                if( playerHealth > 0 && ( ( playerHealth + remainder ) > 0 ) )
+                {
+                    playerHealth += remainder;
+                    shieldHealth = 0;
+                    playerScore -= 10;
+                }
+                else
+                {
+                    shieldHealth = 0;
+                    playerHealth = 0;
+                    playerScore -= 10;
+                }
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 10 ) > 0 ) )
+            {
                 playerHealth -= 10;
+                playerScore -= 10;
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 10 ) < 0 ) )
+            {
+                playerHealth = 0;
+                playerScore -= 10;
+            }
+            else
+                playerScore -= 10;
             Destroy( collider.gameObject );
         }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////currently here///////////////////////////////////////////////////
 
         if( collider.tag == "witchHoodedCollision" )
         {
