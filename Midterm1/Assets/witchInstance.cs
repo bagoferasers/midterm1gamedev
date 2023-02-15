@@ -14,39 +14,40 @@ public class witchInstance : MonoBehaviour
     void Start( )
     {
         UICanvas = GameObject.Find( "UICanvas" );
-        random = new Vector3( Random.Range( -15, 15 ), UICanvas.transform.position.y + 20, 0 );
-        genStartMe( );
+        random = new Vector3( Random.Range( -13, 13 ), UICanvas.transform.position.y + 20, 0 );
         generateMe( );
     }
 
     // Update is called once per frame
     void Update( )
     {
-        random = new Vector3( Random.Range( -15, 15 ), UICanvas.transform.position.y + 20, 0 );
+        random = new Vector3( Random.Range( -13, 13 ), UICanvas.transform.position.y + 20, 0 );
     }
 
     void generateMe( )
     {
         StartCoroutine( gen( ) );
     }
-
-    void genStartMe( )
-    {
-        StartCoroutine( genStart( ) );
-    }
     
     public IEnumerator gen( )
     {
-        yield return new WaitForSeconds( 8 );
-        GameObject i = Instantiate( g, random, Quaternion.identity );        
-        i.transform.parent = gameObject.transform;
+        if( isAreaEmpty( UICanvas.transform.position ) )
+        {
+            GameObject i = Instantiate( g, random, Quaternion.identity );        
+            i.transform.parent = gameObject.transform;
+            yield return new WaitForSeconds( 8 );
+        }
         generateMe( );
     }   
 
-    public IEnumerator genStart( )
+    public bool isAreaEmpty( Vector3 pos ) 
     {
-        yield return new WaitForSeconds( 2 );
-        GameObject i = Instantiate( g, random, Quaternion.identity );
-        i.transform.parent = gameObject.transform;
+        GameObject[ ] all = GameObject.FindGameObjectsWithTag( "dontSpawnHere" );
+        foreach (GameObject g in all )
+        {
+            if( g.transform.position == pos )
+                return false;
+        }
+        return true;
     }
 }

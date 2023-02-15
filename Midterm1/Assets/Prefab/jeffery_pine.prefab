@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8019058624978618258}
   m_Layer: 0
   m_Name: jeffery_pine
-  m_TagString: Untagged
+  m_TagString: dontSpawnHere
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,6 +120,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05695522, y: -0.919929}
-  m_Size: {x: 1.338376, y: 7.7015123}
+  m_Offset: {x: 0.05695522, y: -2.735766}
+  m_Size: {x: 1.338376, y: 3.5637856}
   m_Direction: 0

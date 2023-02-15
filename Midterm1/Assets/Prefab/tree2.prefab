@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3591831372359443979}
   m_Layer: 0
   m_Name: tree2
-  m_TagString: Untagged
+  m_TagString: dontSpawnHere
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,8 +99,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.015364647, y: -0.5652466}
-  m_Size: {x: 1.2036505, y: 3.6247559}
+  m_Offset: {x: -0.015364647, y: -1.2289734}
+  m_Size: {x: 1.2036505, y: 2.135437}
   m_Direction: 0
 --- !u!50 &3591831372359443979
 Rigidbody2D:
