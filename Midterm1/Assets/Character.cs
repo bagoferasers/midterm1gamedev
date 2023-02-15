@@ -85,6 +85,8 @@ public class Character : MonoBehaviour
         if( collider.tag == "boltCollision" )
         {
             Debug.Log( "Collided with bolt" );
+            GameObject spinWitchGenerator = GameObject.Find( "spinWitchGenerator" );
+            spinWitchGenerator.GetComponent< AudioSource >( ).Play( );
             if( playerHealth > 0 )
                 playerHealth -= 10;
             playerScore -= 10;
@@ -105,6 +107,8 @@ public class Character : MonoBehaviour
         if( collider.tag == "ENDGAMEOBJECT" )
         {
             Debug.Log( "Collided with hooded bolt." );
+            GameObject bossWitchGenerator = GameObject.Find( "bossWitchGenerator" );
+            bossWitchGenerator.GetComponent< AudioSource >( ).Play( );
             StartCoroutine( dieScene( ) );
             Debug.Log( "Changed scene to Death." );
         }
