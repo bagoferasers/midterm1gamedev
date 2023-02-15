@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2020238906111902652}
   - component: {fileID: -6216918847004737201}
   - component: {fileID: 2211201737031736395}
+  - component: {fileID: 2856553810507373168}
   m_Layer: 0
   m_Name: moonStone
   m_TagString: moonStoneShield
@@ -124,6 +125,20 @@ CapsuleCollider2D:
   m_Offset: {x: -0.03813923, y: -0.022446332}
   m_Size: {x: 0.92372596, y: 0.5448958}
   m_Direction: 1
+--- !u!114 &2856553810507373168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020238906111902653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04af39cf8723a743b88e89d2c6aabed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g: {fileID: 2020238906111902653}
+  w: 20
 --- !u!1 &2020238906384129864
 GameObject:
   m_ObjectHideFlags: 0

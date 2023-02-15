@@ -33,7 +33,7 @@ public class Character : MonoBehaviour
     {
         rb2d = GetComponent< Rigidbody2D >( );
         playerHealth = 100f;
-        shieldHealth = 5f;
+        shieldHealth = 45f;
         shieldStrength = 50f;
         
         //figure out how to store previous scores
@@ -88,6 +88,7 @@ public class Character : MonoBehaviour
 
     private void OnTriggerEnter2D( Collider2D collider )
     {
+        // handle collision with heart
         if( collider.tag == "healthRegen" )
         {
             Debug.Log( "Collided with healthRegen" );
@@ -108,15 +109,23 @@ public class Character : MonoBehaviour
             Destroy( collider.gameObject );
         }
 
+        // handle collision with moon stone shield
         if( collider.tag == "moonStoneShield" )
         {
             Debug.Log( "Collided with moonStoneShield" );
             GameObject moonGenerator = GameObject.Find( "moonStoneGenerator" );
             moonGenerator.GetComponent< AudioSource >( ).Play( );
             if( shieldHealth < shieldStrength && ( ( shieldHealth + 10 ) < shieldStrength ) )
+            {
                 shieldHealth += 10;
+                playerScore += 10;
+            }
             else if( shieldHealth < shieldStrength && ( ( shieldHealth + 10 ) > shieldStrength ) )
+            {
                 shieldHealth = shieldStrength;
+                playerScore += 10;
+            }
+            Destroy( collider.gameObject );
         }
 
         if( collider.tag == "witchCollision" )
@@ -143,6 +152,7 @@ public class Character : MonoBehaviour
                 shieldHealth = 0;
             else if( playerHealth > 0 )
                 playerHealth -= 10;
+            Destroy( collider.gameObject );
         }
 
         if( collider.tag == "witchHoodedCollision" )
@@ -163,8 +173,10 @@ public class Character : MonoBehaviour
             Debug.Log( "Collided with hooded bolt." );
             GameObject bossWitchGenerator = GameObject.Find( "bossWitchGenerator" );
             bossWitchGenerator.GetComponent< AudioSource >( ).Play( );
+            Destroy( collider.gameObject );
             StartCoroutine( dieScene( ) );
             Debug.Log( "Changed scene to Death." );
+            
         }
 
         if( collider.tag == "YOUWON" )

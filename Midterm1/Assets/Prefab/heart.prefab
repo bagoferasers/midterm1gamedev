@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7553856739861787586}
   - component: {fileID: 7553856739861787587}
   - component: {fileID: -3431707679438873394}
+  - component: {fileID: 6820643823749793013}
   m_Layer: 0
   m_Name: heart
   m_TagString: healthRegen
@@ -222,6 +223,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6820643823749793013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7553856739861787598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04af39cf8723a743b88e89d2c6aabed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g: {fileID: 7553856739861787598}
+  w: 20
 --- !u!1 &7553856739936352321
 GameObject:
   m_ObjectHideFlags: 0
