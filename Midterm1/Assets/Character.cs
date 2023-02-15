@@ -137,11 +137,17 @@ public class Character : MonoBehaviour
             GameObject spinWitchGenerator = GameObject.Find( "spinWitchGenerator" );
             spinWitchGenerator.GetComponent< AudioSource >( ).Play( );
             if( shieldHealth > 0 && ( ( shieldHealth - 5 ) > 0 ) )
+            {
                 shieldHealth -= 5;
+                playerScore += 5;
+            }
             else if( shieldHealth > 0 && ( ( shieldHealth - 5 ) < 0 ) )
+            {
                 shieldHealth = 0;
-            else if( playerHealth > 0 )
-                playerHealth -= 5;
+                playerScore += 5;
+            }
+            else
+                playerScore += 5;
         }
 
         if( collider.tag == "boltCollision" )
