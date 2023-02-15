@@ -125,6 +125,8 @@ public class Character : MonoBehaviour
                 shieldHealth = shieldStrength;
                 playerScore += 10;
             }
+            else
+                playerScore += 10;
             Destroy( collider.gameObject );
         }
 
