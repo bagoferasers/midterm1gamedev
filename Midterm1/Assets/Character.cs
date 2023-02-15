@@ -65,14 +65,14 @@ public class Character : MonoBehaviour
             animator.SetBool( "playerLeft", false ); 
             animator.SetBool( "playerRight", false ); 
         }
-        else if( directX > 0f )
+        else if( directX < 0f )
         {
             //move left
             animator.SetBool( "playerLeft", true );
             animator.SetBool( "playerRight", false );
             animator.SetBool( "playerForward", false );
         }
-        else if( directX < 0f )
+        else if( directX > 0f )
         {
             //move right
             animator.SetBool( "playerRight", true );
