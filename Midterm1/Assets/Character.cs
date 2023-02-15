@@ -103,6 +103,8 @@ public class Character : MonoBehaviour
                 playerHealth = 100;
                 playerScore += 10;
             }
+            else
+                playerScore += 10;
             Destroy( collider.gameObject );
         }
 
