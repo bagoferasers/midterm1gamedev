@@ -14,6 +14,7 @@ public class Character : MonoBehaviour
     float shieldStrength;
     public static float playerScore;
     Rigidbody2D rb2d;
+    private Animator animator;
 
     [ Header( "enter user health data here" ) ]
     public Text h;
@@ -31,9 +32,9 @@ public class Character : MonoBehaviour
     void Start( )
     {
         rb2d = GetComponent< Rigidbody2D >( );
-        playerHealth = 50f;
-        shieldHealth = 10f;
-        shieldStrength = 20f;
+        playerHealth = 100f;
+        shieldHealth = 16f;
+        shieldStrength = 50f;
         
         //figure out how to store previous scores
         playerScore = 0f;
@@ -52,6 +53,32 @@ public class Character : MonoBehaviour
             StartCoroutine( dieScene( ) );
             Debug.Log( "Changed scene to Death." );
         }
+
+        /* player direction animation */
+        float directX = Input.GetAxisRaw( "Horizontal" );
+        animator = GetComponent< Animator >( );
+
+        if( directX == 0f )
+        {
+            //move forward
+            animator.SetBool( "playerForward", true );
+            animator.SetBool( "playerLeft", false ); 
+            animator.SetBool( "playerRight", false ); 
+        }
+        else if( directX < 0f )
+        {
+            //move left
+            animator.SetBool( "playerLeft", true );
+            animator.SetBool( "playerRight", false );
+            animator.SetBool( "playerForward", false );
+        }
+        else if( directX > 0f )
+        {
+            //move right
+            animator.SetBool( "playerRight", true );
+            animator.SetBool( "playerLeft", false ); 
+            animator.SetBool( "playerForward", false );
+        }
     }
     
     void FixedUpdate( )
@@ -61,58 +88,185 @@ public class Character : MonoBehaviour
 
     private void OnTriggerEnter2D( Collider2D collider )
     {
+        // handle collision with heart
         if( collider.tag == "healthRegen" )
         {
             Debug.Log( "Collided with healthRegen" );
             GameObject heartGenerator = GameObject.Find( "heartGenerator" );
             heartGenerator.GetComponent< AudioSource >( ).Play( );
-            if( playerHealth < 100 )
+            if( playerHealth < 100 && ( ( playerHealth + 10 ) < 100 ) )
+            {
                 playerHealth += 10;
-            playerScore += 10;
+                playerScore += 10;
+            }
+            else if( playerHealth < 100 && ( ( playerHealth + 10 ) > 100 ) )
+            {
+                playerHealth = 100;
+                playerScore += 10;
+            }
+            else
+                playerScore += 10;
             Destroy( collider.gameObject );
         }
 
+        // handle collision with moon stone shield
+        if( collider.tag == "moonStoneShield" )
+        {
+            Debug.Log( "Collided with moonStoneShield" );
+            GameObject moonGenerator = GameObject.Find( "moonStoneGenerator" );
+            moonGenerator.GetComponent< AudioSource >( ).Play( );
+            if( shieldHealth < shieldStrength && ( ( shieldHealth + 10 ) < shieldStrength ) )
+            {
+                shieldHealth += 10;
+                playerScore += 10;
+            }
+            else if( shieldHealth < shieldStrength && ( ( shieldHealth + 10 ) > shieldStrength ) )
+            {
+                shieldHealth = shieldStrength;
+                playerScore += 10;
+            }
+            else
+                playerScore += 10;
+            Destroy( collider.gameObject );
+        }
+
+        // handle collision with witch spinning
         if( collider.tag == "witchCollision" )
         {
             Debug.Log( "Collided with witch" );
-            if( playerHealth > 0 )
-                playerHealth -= 2;
-            playerScore -= 2;
-            if( shieldHealth > 0 )
+            GameObject spinWitchGenerator = GameObject.Find( "spinWitchGenerator" );
+            spinWitchGenerator.GetComponent< AudioSource >( ).Play( );
+            if( shieldHealth > 0 && ( ( shieldHealth - 5 ) > 0 ) )
+            {
                 shieldHealth -= 5;
+                playerScore -= 5;
+            }
+            else if( shieldHealth > 0 && ( ( shieldHealth - 5 ) <= 0 ) )
+            {
+                float remainder = shieldHealth - 5;
+                if( playerHealth > 0 && ( ( playerHealth + remainder ) > 0 ) )
+                {
+                    playerHealth += remainder;
+                    shieldHealth = 0;
+                    playerScore -= 5;
+                }
+                else
+                {
+                    shieldHealth = 0;
+                    playerHealth = 0;
+                    playerScore -= 5;
+                }
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 5 ) > 0 ) )
+            {
+                playerHealth -= 5;
+                playerScore -= 5;
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 5 ) < 0 ) )
+            {
+                playerHealth = 0;
+                playerScore -= 5;
+            }
+            else
+                playerScore -= 5;
         }
 
+        // handle collision with bolt projectile from spinning witch 
         if( collider.tag == "boltCollision" )
         {
             Debug.Log( "Collided with bolt" );
             GameObject spinWitchGenerator = GameObject.Find( "spinWitchGenerator" );
             spinWitchGenerator.GetComponent< AudioSource >( ).Play( );
-            if( playerHealth > 0 )
-                playerHealth -= 10;
-            playerScore -= 10;
-            if( shieldHealth > 0 )
+            if( shieldHealth > 0 && ( ( shieldHealth - 10 ) > 0 ) )
+            {
                 shieldHealth -= 10;
+                playerScore -= 10;
+            }
+            else if( shieldHealth > 0 && ( ( shieldHealth - 10 ) <= 0 ) )
+            {
+                float remainder = shieldHealth - 10;
+                if( playerHealth > 0 && ( ( playerHealth + remainder ) > 0 ) )
+                {
+                    playerHealth += remainder;
+                    shieldHealth = 0;
+                    playerScore -= 10;
+                }
+                else
+                {
+                    shieldHealth = 0;
+                    playerHealth = 0;
+                    playerScore -= 10;
+                }
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 10 ) > 0 ) )
+            {
+                playerHealth -= 10;
+                playerScore -= 10;
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 10 ) < 0 ) )
+            {
+                playerHealth = 0;
+                playerScore -= 10;
+            }
+            else
+                playerScore -= 10;
+            Destroy( collider.gameObject );
         }
 
+        // handle collision with hooded boss witch 
         if( collider.tag == "witchHoodedCollision" )
         {
             Debug.Log( "Collided with hooded witch" );
-            if( playerHealth > 0 )
-                playerHealth -= 10;
-            playerScore -= 10;
-            if( shieldHealth > 0 )
+            GameObject bossWitchGenerator = GameObject.Find( "bossWitchGenerator" );
+            bossWitchGenerator.GetComponent< AudioSource >( ).Play( );
+            if( shieldHealth > 0 && ( ( shieldHealth - 10 ) > 0 ) )
+            {
                 shieldHealth -= 10;
+                playerScore -= 10;
+            }
+            else if( shieldHealth > 0 && ( ( shieldHealth - 10 ) <= 0 ) )
+            {
+                float remainder = shieldHealth - 10;
+                if( playerHealth > 0 && ( ( playerHealth + remainder ) > 0 ) )
+                {
+                    playerHealth += remainder;
+                    shieldHealth = 0;
+                    playerScore -= 10;
+                }
+                else
+                {
+                    shieldHealth = 0;
+                    playerHealth = 0;
+                    playerScore -= 10;
+                }
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 10 ) > 0 ) )
+            {
+                playerHealth -= 10;
+                playerScore -= 10;
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 10 ) < 0 ) )
+            {
+                playerHealth = 0;
+                playerScore -= 10;
+            }
+            else
+                playerScore -= 10;
         }
 
+        // handle collision with bolt projectile from hooded boss witch 
         if( collider.tag == "ENDGAMEOBJECT" )
         {
             Debug.Log( "Collided with hooded bolt." );
             GameObject bossWitchGenerator = GameObject.Find( "bossWitchGenerator" );
             bossWitchGenerator.GetComponent< AudioSource >( ).Play( );
+            Destroy( collider.gameObject );
             StartCoroutine( dieScene( ) );
             Debug.Log( "Changed scene to Death." );
+            
         }
 
+        // handle completion of run through forest
         if( collider.tag == "YOUWON" )
         {
             Debug.Log( "You completed the game." );
@@ -121,12 +275,14 @@ public class Character : MonoBehaviour
         }
     }
 
+    // hehe bye!
     public IEnumerator dieScene( )
     {
         SceneManager.LoadScene( "Death" );
         yield return null;
     }
 
+    // how did you win... honestly.. should I make this harder? :)
     public IEnumerator winScene( )
     {
         SceneManager.LoadScene( "Win" );
