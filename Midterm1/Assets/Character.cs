@@ -14,6 +14,7 @@ public class Character : MonoBehaviour
     float shieldStrength;
     public static float playerScore;
     Rigidbody2D rb2d;
+    private Animator animator;
 
     [ Header( "enter user health data here" ) ]
     public Text h;
@@ -51,6 +52,32 @@ public class Character : MonoBehaviour
         {
             StartCoroutine( dieScene( ) );
             Debug.Log( "Changed scene to Death." );
+        }
+
+        /* player direction animation */
+        float directX = Input.GetAxisRaw( "Horizontal" );
+        animator = GetComponent< Animator >( );
+
+        if( directX == 0f )
+        {
+            //move forward
+            GetComponent<Animatior>().setFloat( "playerForward", true );
+            GetComponent<Animatior>().setFloat( "playerLeft", false ); 
+            GetComponent<Animatior>().setFloat( "playerRight", false ); 
+        }
+        else if( directX > 0f )
+        {
+            //move left
+            GetComponent<Animatior>().setFloat( "playerLeft", true );
+            GetComponent<Animatior>().setFloat( "playerRight", false );
+            GetComponent<Animatior>().setFloat( "playerForward", false );
+        }
+        else if( directX < 0f )
+        {
+            //move right
+            GetComponent<Animatior>().setFloat( "playerRight", true );
+            GetComponent<Animatior>().setFloat( "playerLeft", false ); 
+            GetComponent<Animatior>().setFloat( "playerForward", false );
         }
     }
     
