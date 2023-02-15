@@ -222,7 +222,6 @@ GameObject:
   - component: {fileID: 383922940}
   - component: {fileID: 383922939}
   - component: {fileID: 383922938}
-  - component: {fileID: 383922937}
   - component: {fileID: 383922936}
   m_Layer: 0
   m_Name: fadeCanvas
@@ -243,19 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aad5d11be48bef4f834692654bfe3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: AvoidWitches
---- !u!114 &383922937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 383922935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a65fcb91b16906644a504bf235664d20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  scene: GoodLuck
 --- !u!225 &383922938
 CanvasGroup:
   m_ObjectHideFlags: 0

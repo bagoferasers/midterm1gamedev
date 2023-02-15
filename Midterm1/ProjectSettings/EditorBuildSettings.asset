@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WhatDoShieldsDo.unity
     guid: 165693d4821cf6a4fbd1d324471216a1
+  - enabled: 1
+    path: Assets/Scenes/GoodLuck.unity
+    guid: 54c82920f3f408845b081067778006ca
   m_configObjects: {}
