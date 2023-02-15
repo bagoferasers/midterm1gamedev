@@ -93,10 +93,10 @@ public class Character : MonoBehaviour
             Debug.Log( "Collided with healthRegen" );
             GameObject heartGenerator = GameObject.Find( "heartGenerator" );
             heartGenerator.GetComponent< AudioSource >( ).Play( );
-            if( playerHealth < 100 && ( ( playerHealth += 10 ) < 100 ) )
+            if( playerHealth < 100 && ( ( playerHealth + 10 ) < 100 ) )
                 playerHealth += 10;
-            else if( playerHealth < 100 && ( ( playerHealth += 10 ) > 100 ) )
-                playerScore = 100;
+            else if( playerHealth < 100 && ( ( playerHealth + 10 ) > 100 ) )
+                playerHealth = 100;
             Destroy( collider.gameObject );
         }
 
@@ -105,9 +105,9 @@ public class Character : MonoBehaviour
             Debug.Log( "Collided with moonStoneShield" );
             GameObject moonGenerator = GameObject.Find( "moonStoneGenerator" );
             moonGenerator.GetComponent< AudioSource >( ).Play( );
-            if( shieldHealth < shieldStrength && ( ( shieldHealth += 10 ) < shieldStrength ) )
+            if( shieldHealth < shieldStrength && ( ( shieldHealth + 10 ) < shieldStrength ) )
                 shieldHealth += 10;
-            else if( shieldHealth < shieldStrength && ( ( shieldHealth += 10 ) > shieldStrength ) )
+            else if( shieldHealth < shieldStrength && ( ( shieldHealth + 10 ) > shieldStrength ) )
                 shieldHealth = shieldStrength;
         }
 
