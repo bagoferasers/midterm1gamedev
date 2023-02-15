@@ -1305,7 +1305,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0, b: 0.047945976, a: 1}
+        key0: {r: 0.0073931217, g: 1, b: 0, a: 1}
         key1: {r: 0, g: 0.1214056, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -5147,8 +5147,8 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.392
-  m_Color: {r: 0.016251087, g: 0, b: 1, a: 1}
+  m_FalloffIntensity: 1
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
