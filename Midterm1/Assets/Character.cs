@@ -32,9 +32,9 @@ public class Character : MonoBehaviour
     void Start( )
     {
         rb2d = GetComponent< Rigidbody2D >( );
-        playerHealth = 50f;
-        shieldHealth = 10f;
-        shieldStrength = 20f;
+        playerHealth = 100f;
+        shieldHealth = 5f;
+        shieldStrength = 50f;
         
         //figure out how to store previous scores
         playerScore = 0f;
@@ -102,11 +102,12 @@ public class Character : MonoBehaviour
         if( collider.tag == "witchCollision" )
         {
             Debug.Log( "Collided with witch" );
-            if( playerHealth > 0 )
-                playerHealth -= 2;
-            playerScore -= 2;
-            if( shieldHealth > 0 )
+            if( shieldHealth > 0 && ( shieldHealth - 5 ) > 0 )
                 shieldHealth -= 5;
+            else if( shieldHealth > 0 && ( shieldHealth - 5 ) < 0 )
+                shieldHealth = 0;
+            else if( playerHealth > 0 )
+                playerHealth -= 5;
         }
 
         if( collider.tag == "boltCollision" )
@@ -114,21 +115,23 @@ public class Character : MonoBehaviour
             Debug.Log( "Collided with bolt" );
             GameObject spinWitchGenerator = GameObject.Find( "spinWitchGenerator" );
             spinWitchGenerator.GetComponent< AudioSource >( ).Play( );
-            if( playerHealth > 0 )
-                playerHealth -= 10;
-            playerScore -= 10;
-            if( shieldHealth > 0 )
+            if( shieldHealth > 0 && ( shieldHealth - 10 ) > 0 )
                 shieldHealth -= 10;
+            else if( shieldHealth > 0 && ( shieldHealth - 10 ) < 0 )
+                shieldHealth = 0;
+            else if( playerHealth > 0 )
+                playerHealth -= 10;
         }
 
         if( collider.tag == "witchHoodedCollision" )
         {
             Debug.Log( "Collided with hooded witch" );
-            if( playerHealth > 0 )
-                playerHealth -= 10;
-            playerScore -= 10;
-            if( shieldHealth > 0 )
+            if( shieldHealth > 0 && ( shieldHealth - 10 ) > 0 )
                 shieldHealth -= 10;
+            else if( shieldHealth > 0 && ( shieldHealth - 10 ) < 0 )
+                shieldHealth = 0;
+            else if( playerHealth > 0 )
+                playerHealth -= 10;
         }
 
         if( collider.tag == "ENDGAMEOBJECT" )
