@@ -12,12 +12,17 @@ public class gameMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //v = transform.position;
+        StartCoroutine( wait( ) );
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         transform.Translate( Vector3.down * Time.deltaTime * speed, Space.World );
+    }
+
+    IEnumerator wait( )
+    {
+        yield return new WaitForSeconds( 4 );
     }
 }
