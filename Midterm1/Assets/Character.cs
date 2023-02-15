@@ -33,7 +33,7 @@ public class Character : MonoBehaviour
     {
         rb2d = GetComponent< Rigidbody2D >( );
         playerHealth = 100f;
-        shieldHealth = 45f;
+        shieldHealth = 0f;
         shieldStrength = 50f;
         
         //figure out how to store previous scores
@@ -130,6 +130,7 @@ public class Character : MonoBehaviour
             Destroy( collider.gameObject );
         }
 
+        // handle collision with witch spinning
         if( collider.tag == "witchCollision" )
         {
             Debug.Log( "Collided with witch" );
