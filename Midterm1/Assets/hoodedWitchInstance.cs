@@ -14,7 +14,7 @@ public class hoodedWitchInstance : MonoBehaviour
     void Start( )
     {
         UICanvas = GameObject.Find( "UICanvas" );
-        random = new Vector3( Random.Range( -15, 15 ), UICanvas.transform.position.y + 30, transform.position.z );
+        random = new Vector3( Random.Range( -13, 13 ), UICanvas.transform.position.y + 30, transform.position.z );
         generateMe( );
         
     }
@@ -22,7 +22,7 @@ public class hoodedWitchInstance : MonoBehaviour
     // Update is called once per frame
     void Update( )
     {
-        random = new Vector3( Random.Range( -15, 15 ), UICanvas.transform.position.y + 30, transform.position.z );
+        random = new Vector3( Random.Range( -13, 13 ), UICanvas.transform.position.y + 30, transform.position.z );
     }
 
     void generateMe( )
@@ -32,11 +32,23 @@ public class hoodedWitchInstance : MonoBehaviour
     
     public IEnumerator gen( )
     {
-        yield return new WaitForSeconds( 15 );
-        GameObject i = Instantiate( g, random, Quaternion.identity );        
-        i.transform.parent = gameObject.transform;
+        if( isAreaEmpty( UICanvas.transform.position ) )
+        {
+            GameObject i = Instantiate( g, random, Quaternion.identity );        
+            i.transform.parent = gameObject.transform;
+            yield return new WaitForSeconds( 15 );
+        }
         generateMe( );
     }   
 
-
+    public bool isAreaEmpty( Vector3 pos ) 
+    {
+        GameObject[ ] all = GameObject.FindGameObjectsWithTag( "dontSpawnHere" );
+        foreach (GameObject g in all )
+        {
+            if( g.transform.position == pos )
+                return false;
+        }
+        return true;
+    }
 }
