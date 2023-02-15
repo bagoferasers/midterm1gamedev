@@ -20,6 +20,5 @@ public class initializeScoreDeathScene : MonoBehaviour
     {
         yield return new WaitForSeconds( 4 );
         SceneManager.LoadScene( "MainMenu" );
-        SceneChange.hasStarted = false;
     }
 }

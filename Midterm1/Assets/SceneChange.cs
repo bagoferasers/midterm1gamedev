@@ -7,9 +7,10 @@ public class SceneChange : MonoBehaviour
 {
     public string scene;
     public static bool hasStarted = false;
-    
+    /////////////////////////////////////////////////////////////////
     public void goToScene( )
     {
+        hasStarted = true;
         StartCoroutine( ChangeScene( ) );
         Debug.Log( "Changed scene." );
     }
@@ -20,11 +21,9 @@ public class SceneChange : MonoBehaviour
         yield return new WaitForSeconds( 2 );
         SceneManager.LoadScene( scene );
     }
-
+///////////////////////////////////////////////////////////////////////
     public void goToNextSceneInSequence( )
     {
-        if( string.Compare( scene, "Game" ) == 0 )
-            hasStarted = true;
         StartCoroutine( goToNextSceneInSequenceNumerator( ) );
         Debug.Log( "Changed scene." );
     }
@@ -35,7 +34,7 @@ public class SceneChange : MonoBehaviour
         FadeMeOut( );
         SceneManager.LoadScene( scene );
     }
-
+//////////////////////////////////////////////////////////////////////////////
     public void FadeMeOut( )
     {
         StartCoroutine ( FadeOut( ) );
@@ -56,17 +55,12 @@ public class SceneChange : MonoBehaviour
         canvasGroup.interactable = false;
         yield return null;
     }
-
+///////////////////////////////////////////////////////////////
     public void Start( )
     {
-        if( string.Compare( scene, "MainMenu" ) != 0 && string.Compare( scene, "Game" ) != 0
-        && string.Compare( scene, "Death" ) != 0 && string.Compare( scene, "Win" ) != 0 
-        && hasStarted == false )
-        {
+        if( hasStarted == true )
             goToNextSceneInSequence( );
-            Debug.Log( "Changed scene." );
-        }
-        else  
+        else if( string.Compare( scene, "Game" ) == 0 )  
             goToScene( );
     }
 }
