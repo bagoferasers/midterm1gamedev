@@ -116,9 +116,9 @@ public class Character : MonoBehaviour
             Debug.Log( "Collided with witch" );
             GameObject spinWitchGenerator = GameObject.Find( "spinWitchGenerator" );
             spinWitchGenerator.GetComponent< AudioSource >( ).Play( );
-            if( shieldHealth > 0 && ( shieldHealth - 5 ) > 0 )
+            if( shieldHealth > 0 && ( ( shieldHealth - 5 ) > 0 ) )
                 shieldHealth -= 5;
-            else if( shieldHealth > 0 && ( shieldHealth - 5 ) < 0 )
+            else if( shieldHealth > 0 && ( ( shieldHealth - 5 ) < 0 ) )
                 shieldHealth = 0;
             else if( playerHealth > 0 )
                 playerHealth -= 5;
@@ -129,9 +129,9 @@ public class Character : MonoBehaviour
             Debug.Log( "Collided with bolt" );
             GameObject spinWitchGenerator = GameObject.Find( "spinWitchGenerator" );
             spinWitchGenerator.GetComponent< AudioSource >( ).Play( );
-            if( shieldHealth > 0 && ( shieldHealth - 10 ) > 0 )
+            if( shieldHealth > 0 && ( ( shieldHealth - 10 ) > 0 ) )
                 shieldHealth -= 10;
-            else if( shieldHealth > 0 && ( shieldHealth - 10 ) < 0 )
+            else if( shieldHealth > 0 )
                 shieldHealth = 0;
             else if( playerHealth > 0 )
                 playerHealth -= 10;
@@ -142,9 +142,9 @@ public class Character : MonoBehaviour
             Debug.Log( "Collided with hooded witch" );
             GameObject bossWitchGenerator = GameObject.Find( "bossWitchGenerator" );
             bossWitchGenerator.GetComponent< AudioSource >( ).Play( );
-            if( shieldHealth > 0 && ( shieldHealth - 10 ) > 0 )
+            if( shieldHealth > 0 && ( ( shieldHealth - 10 ) > 0 ) )
                 shieldHealth -= 10;
-            else if( shieldHealth > 0 && ( shieldHealth - 10 ) < 0 )
+            else if( shieldHealth > 0 && ( ( shieldHealth - 10 ) < 0 ) )
                 shieldHealth = 0;
             else if( playerHealth > 0 )
                 playerHealth -= 10;
