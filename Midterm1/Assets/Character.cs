@@ -171,6 +171,7 @@ public class Character : MonoBehaviour
                 playerScore -= 5;
         }
 
+        // handle collision with bolt projectile from spinning witch 
         if( collider.tag == "boltCollision" )
         {
             Debug.Log( "Collided with bolt" );
@@ -211,21 +212,49 @@ public class Character : MonoBehaviour
                 playerScore -= 10;
             Destroy( collider.gameObject );
         }
-/////////////////////////////////////////////currently here///////////////////////////////////////////////////
 
+        // handle collision with hooded boss witch 
         if( collider.tag == "witchHoodedCollision" )
         {
             Debug.Log( "Collided with hooded witch" );
             GameObject bossWitchGenerator = GameObject.Find( "bossWitchGenerator" );
             bossWitchGenerator.GetComponent< AudioSource >( ).Play( );
             if( shieldHealth > 0 && ( ( shieldHealth - 10 ) > 0 ) )
+            {
                 shieldHealth -= 10;
-            else if( shieldHealth > 0 && ( ( shieldHealth - 10 ) < 0 ) )
-                shieldHealth = 0;
-            else if( playerHealth > 0 )
+                playerScore -= 10;
+            }
+            else if( shieldHealth > 0 && ( ( shieldHealth - 10 ) <= 0 ) )
+            {
+                float remainder = shieldHealth - 10;
+                if( playerHealth > 0 && ( ( playerHealth + remainder ) > 0 ) )
+                {
+                    playerHealth += remainder;
+                    shieldHealth = 0;
+                    playerScore -= 10;
+                }
+                else
+                {
+                    shieldHealth = 0;
+                    playerHealth = 0;
+                    playerScore -= 10;
+                }
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 10 ) > 0 ) )
+            {
                 playerHealth -= 10;
+                playerScore -= 10;
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 10 ) < 0 ) )
+            {
+                playerHealth = 0;
+                playerScore -= 10;
+            }
+            else
+                playerScore -= 10;
         }
 
+        // handle collision with bolt projectile from hooded boss witch 
         if( collider.tag == "ENDGAMEOBJECT" )
         {
             Debug.Log( "Collided with hooded bolt." );
@@ -237,6 +266,7 @@ public class Character : MonoBehaviour
             
         }
 
+        // handle completion of run through forest
         if( collider.tag == "YOUWON" )
         {
             Debug.Log( "You completed the game." );
@@ -245,12 +275,14 @@ public class Character : MonoBehaviour
         }
     }
 
+    // hehe bye!
     public IEnumerator dieScene( )
     {
         SceneManager.LoadScene( "Death" );
         yield return null;
     }
 
+    // how did you win... honestly.. should I make this harder? :)
     public IEnumerator winScene( )
     {
         SceneManager.LoadScene( "Win" );
