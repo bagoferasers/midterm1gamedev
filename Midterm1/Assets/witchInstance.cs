@@ -15,6 +15,7 @@ public class witchInstance : MonoBehaviour
     {
         UICanvas = GameObject.Find( "UICanvas" );
         random = new Vector3( Random.Range( -15, 15 ), UICanvas.transform.position.y + 20, 0 );
+        genStartMe( );
         generateMe( );
     }
 
@@ -28,6 +29,11 @@ public class witchInstance : MonoBehaviour
     {
         StartCoroutine( gen( ) );
     }
+
+    void genStartMe( )
+    {
+        StartCoroutine( genStart( ) );
+    }
     
     public IEnumerator gen( )
     {
@@ -37,5 +43,10 @@ public class witchInstance : MonoBehaviour
         generateMe( );
     }   
 
-
+    public IEnumerator genStart( )
+    {
+        yield return new WaitForSeconds( 2 );
+        GameObject i = Instantiate( g, random, Quaternion.identity );
+        i.transform.parent = gameObject.transform;
+    }
 }

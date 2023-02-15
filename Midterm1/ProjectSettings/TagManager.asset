@@ -10,6 +10,7 @@ TagManager:
   - witchHoodedCollision
   - ENDGAMEOBJECT
   - YOUWON
+  - moonStoneShield
   layers:
   - Default
   - TransparentFX

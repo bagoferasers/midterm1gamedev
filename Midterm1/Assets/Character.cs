@@ -93,15 +93,29 @@ public class Character : MonoBehaviour
             Debug.Log( "Collided with healthRegen" );
             GameObject heartGenerator = GameObject.Find( "heartGenerator" );
             heartGenerator.GetComponent< AudioSource >( ).Play( );
-            if( playerHealth < 100 )
+            if( playerHealth < 100 && ( ( playerHealth += 10 ) < 100 ) )
                 playerHealth += 10;
-            playerScore += 10;
+            else if( playerHealth < 100 && ( ( playerHealth += 10 ) > 100 ) )
+                playerScore = 100;
             Destroy( collider.gameObject );
+        }
+
+        if( collider.tag == "moonStoneShield" )
+        {
+            Debug.Log( "Collided with moonStoneShield" );
+            GameObject moonGenerator = GameObject.Find( "moonStoneGenerator" );
+            moonGenerator.GetComponent< AudioSource >( ).Play( );
+            if( shieldHealth < shieldStrength && ( ( shieldHealth += 10 ) < shieldStrength ) )
+                shieldHealth += 10;
+            else if( shieldHealth < shieldStrength && ( ( shieldHealth += 10 ) > shieldStrength ) )
+                shieldHealth = shieldStrength;
         }
 
         if( collider.tag == "witchCollision" )
         {
             Debug.Log( "Collided with witch" );
+            GameObject spinWitchGenerator = GameObject.Find( "spinWitchGenerator" );
+            spinWitchGenerator.GetComponent< AudioSource >( ).Play( );
             if( shieldHealth > 0 && ( shieldHealth - 5 ) > 0 )
                 shieldHealth -= 5;
             else if( shieldHealth > 0 && ( shieldHealth - 5 ) < 0 )
@@ -126,6 +140,8 @@ public class Character : MonoBehaviour
         if( collider.tag == "witchHoodedCollision" )
         {
             Debug.Log( "Collided with hooded witch" );
+            GameObject bossWitchGenerator = GameObject.Find( "bossWitchGenerator" );
+            bossWitchGenerator.GetComponent< AudioSource >( ).Play( );
             if( shieldHealth > 0 && ( shieldHealth - 10 ) > 0 )
                 shieldHealth -= 10;
             else if( shieldHealth > 0 && ( shieldHealth - 10 ) < 0 )
