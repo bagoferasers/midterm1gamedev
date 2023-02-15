@@ -63,11 +63,13 @@ public class Character : MonoBehaviour
     {
         if( collider.tag == "healthRegen" )
         {
-            Destroy( collider.gameObject );
             Debug.Log( "Collided with healthRegen" );
+            GameObject heartGenerator = GameObject.Find( "heartGenerator" );
+            heartGenerator.GetComponent< AudioSource >( ).Play( );
             if( playerHealth < 100 )
                 playerHealth += 10;
             playerScore += 10;
+            Destroy( collider.gameObject );
         }
 
         if( collider.tag == "witchCollision" )

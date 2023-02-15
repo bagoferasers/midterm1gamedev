@@ -14,17 +14,14 @@ public class witchInstance : MonoBehaviour
     void Start( )
     {
         UICanvas = GameObject.Find( "UICanvas" );
-        random = new Vector3( Random.Range( -10, 10 ), UICanvas.transform.position.y + 20, 0 );
-        GameObject i = Instantiate( g, random, Quaternion.identity );
-        i.transform.parent = gameObject.transform;
+        random = new Vector3( Random.Range( -15, 15 ), UICanvas.transform.position.y + 20, 0 );
         generateMe( );
-        
     }
 
     // Update is called once per frame
     void Update( )
     {
-        random = new Vector3( Random.Range( -10, 10 ), UICanvas.transform.position.y + 20, 0 );
+        random = new Vector3( Random.Range( -15, 15 ), UICanvas.transform.position.y + 20, 0 );
     }
 
     void generateMe( )
