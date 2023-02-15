@@ -94,9 +94,15 @@ public class Character : MonoBehaviour
             GameObject heartGenerator = GameObject.Find( "heartGenerator" );
             heartGenerator.GetComponent< AudioSource >( ).Play( );
             if( playerHealth < 100 && ( ( playerHealth + 10 ) < 100 ) )
+            {
                 playerHealth += 10;
+                playerScore += 10;
+            }
             else if( playerHealth < 100 && ( ( playerHealth + 10 ) > 100 ) )
+            {
                 playerHealth = 100;
+                playerScore += 10;
+            }
             Destroy( collider.gameObject );
         }
 
