@@ -33,7 +33,7 @@ public class Character : MonoBehaviour
     {
         rb2d = GetComponent< Rigidbody2D >( );
         playerHealth = 100f;
-        shieldHealth = 0f;
+        shieldHealth = 6f;
         shieldStrength = 50f;
         
         //figure out how to store previous scores
@@ -130,26 +130,50 @@ public class Character : MonoBehaviour
             Destroy( collider.gameObject );
         }
 
+///////////////////////////////////////////////currently here/////////////////////////////////////////////
         // handle collision with witch spinning
         if( collider.tag == "witchCollision" )
         {
             Debug.Log( "Collided with witch" );
             GameObject spinWitchGenerator = GameObject.Find( "spinWitchGenerator" );
             spinWitchGenerator.GetComponent< AudioSource >( ).Play( );
+
             if( shieldHealth > 0 && ( ( shieldHealth - 5 ) > 0 ) )
             {
                 shieldHealth -= 5;
-                playerScore += 5;
+                playerScore -= 5;
             }
-            else if( shieldHealth > 0 && ( ( shieldHealth - 5 ) < 0 ) )
+            else if( shieldHealth > 0 && ( ( shieldHealth - 5 ) <= 0 ) )
             {
-                shieldHealth = 0;
-                playerScore += 5;
+                float remainder = shieldHealth - 5;
+                if( playerHealth > 0 && ( ( playerHealth + remainder ) > 0 ) )
+                {
+                    playerHealth += remainder;
+                    shieldHealth = 0;
+                    playerScore -= 5;
+                }
+                else
+                {
+                    shieldHealth = 0;
+                    playerHealth = 0;
+                    playerScore -= 5;
+                }
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 5 ) > 0 ) )
+            {
+                playerHealth -= 5;
+                playerScore -= 5;
+            }
+            else if( shieldHealth == 0 && playerHealth > 0 && ( ( playerHealth - 5 ) < 0 ) )
+            {
+                playerHealth = 0;
+                playerScore -= 5;
             }
             else
-                playerScore += 5;
+                playerScore -= 5;
         }
 
+///////////////////////////////////////////////currently here/////////////////////////////////////////////
         if( collider.tag == "boltCollision" )
         {
             Debug.Log( "Collided with bolt" );
@@ -163,6 +187,7 @@ public class Character : MonoBehaviour
                 playerHealth -= 10;
             Destroy( collider.gameObject );
         }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         if( collider.tag == "witchHoodedCollision" )
         {
