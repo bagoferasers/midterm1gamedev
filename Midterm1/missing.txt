@@ -1,0 +1,14 @@
+Colby Bailey (nib667)
+
+Features I did not complete: none! I did them all.
+
+Game objects I did NOT use from the internet/unity asset store/itchio are :
+	- all C# scripts
+	- all trees
+	- all bushes
+	- animation implementation
+	- entire game structure 
+	- entire development of game 
+
+	...aka everything except some of the sprite sheets...
+
