@@ -15,9 +15,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Death.unity
     guid: ff1320cd8343e65489b2b089f1aa865c
   - enabled: 1
-    path: Assets/Scenes/HowToPlay.unity
-    guid: 94f84dcf804f1e2469455c1d15141465
-  - enabled: 1
     path: Assets/Scenes/Win.unity
     guid: 1a4125836ee37234da1b35737d738829
+  - enabled: 1
+    path: Assets/Scenes/AvoidWitches.unity
+    guid: ac36fb63920cb0544b0e5829f7a9e721
+  - enabled: 1
+    path: Assets/Scenes/HowToWin.unity
+    guid: ea656a910fe247649a1c04ab054df7da
+  - enabled: 1
+    path: Assets/Scenes/WhatDoHeartsDo.unity
+    guid: cc329be7fe108ca43bed89f8b0d94fe7
+  - enabled: 1
+    path: Assets/Scenes/WhatDoShieldsDo.unity
+    guid: 165693d4821cf6a4fbd1d324471216a1
+  - enabled: 1
+    path: Assets/Scenes/GoodLuck.unity
+    guid: 54c82920f3f408845b081067778006ca
   m_configObjects: {}

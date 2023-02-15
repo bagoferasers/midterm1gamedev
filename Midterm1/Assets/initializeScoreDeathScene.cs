@@ -12,6 +12,7 @@ public class initializeScoreDeathScene : MonoBehaviour
     void Start()
     {
         s.text = "" + Character.playerScore;
+        SceneChange.hasStarted = false;
         StartCoroutine( goToMain( ) );
         Debug.Log( "Changed scene to Main." );
     }
