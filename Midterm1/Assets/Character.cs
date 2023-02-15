@@ -61,23 +61,23 @@ public class Character : MonoBehaviour
         if( directX == 0f )
         {
             //move forward
-            GetComponent<Animatior>().setFloat( "playerForward", true );
-            GetComponent<Animatior>().setFloat( "playerLeft", false ); 
-            GetComponent<Animatior>().setFloat( "playerRight", false ); 
+            animator.SetBool( "playerForward", true );
+            animator.SetBool( "playerLeft", false ); 
+            animator.SetBool( "playerRight", false ); 
         }
         else if( directX > 0f )
         {
             //move left
-            GetComponent<Animatior>().setFloat( "playerLeft", true );
-            GetComponent<Animatior>().setFloat( "playerRight", false );
-            GetComponent<Animatior>().setFloat( "playerForward", false );
+            animator.SetBool( "playerLeft", true );
+            animator.SetBool( "playerRight", false );
+            animator.SetBool( "playerForward", false );
         }
         else if( directX < 0f )
         {
             //move right
-            GetComponent<Animatior>().setFloat( "playerRight", true );
-            GetComponent<Animatior>().setFloat( "playerLeft", false ); 
-            GetComponent<Animatior>().setFloat( "playerForward", false );
+            animator.SetBool( "playerRight", true );
+            animator.SetBool( "playerLeft", false ); 
+            animator.SetBool( "playerForward", false );
         }
     }
     
